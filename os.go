@@ -2,6 +2,7 @@ package utils
 
 import (
 	"os"
+	"strconv"
 	"sync"
 
 	"github.com/joho/godotenv"
@@ -23,4 +24,9 @@ func GetEnv(key string, defaultValue interface{}) interface{} {
 		return value
 	}
 	return defaultValue
+}
+
+func GetEnvPositiveInt(key string, defaulValue int) int {
+	res, _ := strconv.Atoi(os.Getenv(key))
+	return res
 }
