@@ -27,6 +27,9 @@ func GetEnv(key string, defaultValue interface{}) interface{} {
 }
 
 func GetEnvPositiveInt(key string, defaulValue int) int {
-	res, _ := strconv.Atoi(os.Getenv(key))
+	res, err := strconv.Atoi(os.Getenv(key))
+	if err != nil || res == 0 {
+		return defaulValue
+	}
 	return res
 }
